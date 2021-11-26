@@ -1,7 +1,0 @@
-# Terraform
-**/.terraform/*
-*.tfvars
-*.tfstate
-*.tfstate.*
-crash.log
-.terraform.locl.hcl
