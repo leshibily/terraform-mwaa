@@ -5,7 +5,8 @@ Tutorial for Amazon Managed Workflows for Apache Airflow (MWAA) with Terraform. 
 ## Prerequisites
 1. Install Terraform v1.0.10.
 2. Export AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. For eg.
-```export AWS_ACCESS_KEY_ID=AKIAZ7D5S2Z74EXAMPLE
+```
+export AWS_ACCESS_KEY_ID=AKIAZ7D5S2Z74EXAMPLE
 export AWS_SECRET_ACCESS_KEY=sDXlKg34f6bRFRqxP7AFGsLy6K19pEOa7example
 ```
 3. Update the Terraform S3 backend in providers.tf.
