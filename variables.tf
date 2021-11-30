@@ -1,19 +1,7 @@
 # MWAA input variables
 
-# variable "terraform_backend_s3_bucket" {
-#   type        = string
-#   description = "AWS s3 bucket where Terraform state is stored"
-# }
-
-# variable "terraform_backend_s3_key" {
-#   type        = string
-#   description = "AWS s3 path to Terraform state file"
-# }
-
-# variable "terraform_backend_s3_region" {
-#   type        = string
-#   description = "AWS s3 region where terraform state is stored."
-# }
+variable "aws_access_key" {}
+variable "aws_secret_key" {}
 
 variable "region" {
   type        = string
