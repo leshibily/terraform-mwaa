@@ -16,14 +16,16 @@ aws_access_key = "AKICGY7QD2Z74EXAMPLE"
 aws_secret_key = "fVSlK+df5htRFRqxP7AFGsLy6K19pEOa7example"
 region   = "ap-southeast-2"
 prefix   = "airflow"
-vpc_cidr = "10.192.0.0/16"
+vpc_id = "vpc-01c8a77ac9example"
+igw_id = "igw-02dee5327cexample"
+# add private and public subnet cidrs based on your vpc cidr range. The below is for the VPC CIDR: 10.79.4.0/22
 public_subnet_cidrs = [
-  "10.192.10.0/24",
-  "10.192.11.0/24"
+  "10.79.4.192/27",
+  "10.79.4.224/27"
 ]
 private_subnet_cidrs = [
-  "10.192.20.0/24",
-  "10.192.21.0/24"
+  "10.79.4.64/26",
+  "10.79.4.128/26"
 ]
 max_workers = 2
 
