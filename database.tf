@@ -11,7 +11,7 @@ resource "aws_db_subnet_group" "db_subnet_group" {
 resource "aws_security_group" "db_security_group" {
   name        = "${var.prefix}-oracle-db-sg"
   description = "Allow Oracle port to public"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = var.vpc_id
 
   ingress {
     description = "Allow Oracle DB Port"

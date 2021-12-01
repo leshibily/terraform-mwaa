@@ -4,19 +4,9 @@ data "aws_availability_zones" "availability_zones" {
   state = "available"
 }
 
-resource "aws_vpc" "vpc" {
-  cidr_block           = var.vpc_cidr
-  enable_dns_support   = true
-  enable_dns_hostnames = true
-
-  tags = merge(local.tags, {
-    Name = "${var.prefix}-vpc"
-  })
-}
-
 resource "aws_subnet" "public_subnets" {
   count                   = length(var.public_subnet_cidrs)
-  vpc_id                  = aws_vpc.vpc.id
+  vpc_id                  = var.vpc_id
   cidr_block              = var.public_subnet_cidrs[count.index]
   availability_zone       = data.aws_availability_zones.availability_zones.names[count.index]
   map_public_ip_on_launch = true
@@ -28,21 +18,13 @@ resource "aws_subnet" "public_subnets" {
 
 resource "aws_subnet" "private_subnets" {
   count                   = length(var.private_subnet_cidrs)
-  vpc_id                  = aws_vpc.vpc.id
+  vpc_id                  = var.vpc_id
   cidr_block              = var.private_subnet_cidrs[count.index]
   availability_zone       = data.aws_availability_zones.availability_zones.names[count.index]
   map_public_ip_on_launch = false
 
   tags = merge(local.tags, {
     Name = format("${var.prefix}-private%02d", count.index + 1)
-  })
-}
-
-resource "aws_internet_gateway" "internet_gateway" {
-  vpc_id = aws_vpc.vpc.id
-
-  tags = merge(local.tags, {
-    Name = "${var.prefix}-ig"
   })
 }
 
@@ -53,8 +35,6 @@ resource "aws_eip" "nat_gateway_elastic_ips" {
   tags = merge(local.tags, {
     Name = format("${var.prefix}-eip%02d", count.index + 1)
   })
-
-  depends_on = [aws_internet_gateway.internet_gateway]
 }
 
 resource "aws_nat_gateway" "nat_gateways" {
@@ -68,11 +48,11 @@ resource "aws_nat_gateway" "nat_gateways" {
 }
 
 resource "aws_route_table" "public_route_table" {
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = var.vpc_id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.internet_gateway.id
+    gateway_id = var.igw_id
   }
 
   tags = merge(local.tags, {
@@ -88,7 +68,7 @@ resource "aws_route_table_association" "public_route_table_associations" {
 
 resource "aws_route_table" "private_route_tables" {
   count  = length(var.private_subnet_cidrs)
-  vpc_id = aws_vpc.vpc.id
+  vpc_id = var.vpc_id
 
   route {
     cidr_block     = "0.0.0.0/0"
@@ -109,7 +89,7 @@ resource "aws_route_table_association" "private_route_table_associations" {
 resource "aws_security_group" "mwaa" {
   name        = "airflow-security-group-${var.prefix}"
   description = "Security Group for Amazon MWAA Environment ${var.prefix}"
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = var.vpc_id
 
   ingress {
     from_port = 0

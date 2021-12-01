@@ -1,11 +1,11 @@
 # MWAA providers
 
 terraform {
-  backend "s3" {
-    # bucket = "airflow-terraform"
-    # key    = "state/terraform.tfstate"
-    # region = "ap-southeast-2"
-  }
+  # backend "s3" {
+  #   # bucket = "airflow-terraform"
+  #   # key    = "state/terraform.tfstate"
+  #   # region = "ap-southeast-2"
+  # }
 
   required_providers {
     aws = {
@@ -20,5 +20,5 @@ terraform {
 provider "aws" {
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
-  region = var.region
+  region     = var.region
 }

@@ -34,48 +34,48 @@ resource "aws_s3_bucket_object" "dags" {
 
 # Access to push dags to S3
 
-data "aws_iam_policy_document" "dags" {
-  statement {
-    sid = ""
-    actions = [
-      "s3:ListBucket",
-      "s3:ListObjects*",
-    ]
-    effect = "Allow"
-    resources = [
-      aws_s3_bucket.s3_bucket.arn,
-    ]
-  }
+# data "aws_iam_policy_document" "dags" {
+#   statement {
+#     sid = ""
+#     actions = [
+#       "s3:ListBucket",
+#       "s3:ListObjects*",
+#     ]
+#     effect = "Allow"
+#     resources = [
+#       aws_s3_bucket.s3_bucket.arn,
+#     ]
+#   }
 
-  statement {
-    sid = ""
-    actions = [
-      "s3:PutObject*",
-      "s3:DeleteObject*",
-    ]
-    effect = "Allow"
-    resources = [
-      "${aws_s3_bucket.s3_bucket.arn}/dags/*"
-    ]
-  }
-}
+#   statement {
+#     sid = ""
+#     actions = [
+#       "s3:PutObject*",
+#       "s3:DeleteObject*",
+#     ]
+#     effect = "Allow"
+#     resources = [
+#       "${aws_s3_bucket.s3_bucket.arn}/dags/*"
+#     ]
+#   }
+# }
 
-resource "aws_iam_user" "dags" {
-  name = var.prefix
-}
+# resource "aws_iam_user" "dags" {
+#   name = var.prefix
+# }
 
-resource "aws_iam_policy" "dags" {
-  name   = "${var.prefix}-dags"
-  path   = "/"
-  policy = data.aws_iam_policy_document.dags.json
-}
+# resource "aws_iam_policy" "dags" {
+#   name   = "${var.prefix}-dags"
+#   path   = "/"
+#   policy = data.aws_iam_policy_document.dags.json
+# }
 
-resource "aws_iam_policy_attachment" "dags" {
-  name       = "${var.prefix}-dags"
-  users      = [aws_iam_user.dags.name]
-  policy_arn = aws_iam_policy.dags.arn
-}
+# resource "aws_iam_policy_attachment" "dags" {
+#   name       = "${var.prefix}-dags"
+#   users      = [aws_iam_user.dags.name]
+#   policy_arn = aws_iam_policy.dags.arn
+# }
 
-resource "aws_iam_access_key" "dags" {
-  user = aws_iam_user.dags.name
-}
+# resource "aws_iam_access_key" "dags" {
+#   user = aws_iam_user.dags.name
+# }

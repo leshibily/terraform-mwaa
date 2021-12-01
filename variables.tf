@@ -13,9 +13,14 @@ variable "prefix" {
   description = "A prefix to use when naming resources."
 }
 
-variable "vpc_cidr" {
+variable "vpc_id" {
   type        = string
-  description = "VPC CIDR block."
+  description = "VPC ID of the AWS VPC."
+}
+
+variable "igw_id" {
+  type        = string
+  description = "Internet gateway ID."
 }
 
 variable "public_subnet_cidrs" {
