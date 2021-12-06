@@ -152,7 +152,7 @@ resource "aws_mwaa_environment" "mwaa_environment" {
   name                  = var.prefix
   min_workers           = var.min_workers
   max_workers           = var.max_workers
-  webserver_access_mode = "PUBLIC_ONLY"
+  webserver_access_mode = "PRIVATE_ONLY"
 
   network_configuration {
     security_group_ids = [aws_security_group.mwaa.id]
