@@ -25,16 +25,6 @@ private_subnet_cidrs = [
   "10.79.4.128/26"
 ]
 max_workers = 2
-
-db_engine            = "oracle-se2"
-db_engine_version    = "19.0.0.0.ru-2021-07.rur-2021-07.r1"
-db_instance_class    = "db.t3.small"
-db_allocated_storage = "50"
-db_license_model     = "license-included"
-db_name              = "ORCL"
-db_username          = "admin"
-db_password          = "Test1234"
-db_port              = "1521"
 ```
 
 ## DAGs

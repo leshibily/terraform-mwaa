@@ -55,52 +55,6 @@ variable "max_workers" {
   default     = 2
 }
 
-variable "db_engine" {
-  type        = string
-  description = "Database engine"
-}
-
-variable "db_engine_version" {
-  type        = string
-  description = "Database engine version"
-}
-
-variable "db_instance_class" {
-  type        = string
-  description = "Database instance class"
-}
-
-variable "db_allocated_storage" {
-  type        = string
-  description = "Database storage allocation size"
-}
-
-variable "db_license_model" {
-  type        = string
-  description = "DB license model"
-  default     = ""
-}
-
-variable "db_name" {
-  type        = string
-  description = "Database name"
-}
-
-variable "db_username" {
-  type        = string
-  description = "Database username"
-}
-
-variable "db_password" {
-  type        = string
-  description = "Database password"
-}
-
-variable "db_port" {
-  type        = string
-  description = "Database port"
-}
-
 variable "additional_tags" {
   type        = map(string)
   description = "Additional resource tags. Do not include the Name key."
