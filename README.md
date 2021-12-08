@@ -14,7 +14,7 @@ Below is an example `terraform.tfvars` file that you can use in your deployments
 ```ini
 aws_access_key = "AKICGY7QD2Z74EXAMPLE"
 aws_secret_key = "fVSlK+df5htRFRqxP7AFGsLy6K19pEOa7example"
-# optional:
+# aws_session_token is optional
 aws_session_token = "your_aws_session_token"
 region   = "ap-southeast-2"
 prefix   = "airflow"
