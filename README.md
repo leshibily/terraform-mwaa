@@ -14,15 +14,12 @@ Below is an example `terraform.tfvars` file that you can use in your deployments
 ```ini
 aws_access_key = "AKICGY7QD2Z74EXAMPLE"
 aws_secret_key = "fVSlK+df5htRFRqxP7AFGsLy6K19pEOa7example"
+# optional:
+aws_session_token = "your_aws_session_token"
 region   = "ap-southeast-2"
 prefix   = "airflow"
 vpc_id = "vpc-01c8a77ac9example"
-igw_id = "igw-02dee5327cexample"
-# add private and public subnet cidrs based on your vpc cidr range. The below is for the VPC CIDR: 10.79.4.0/22
-public_subnet_cidrs = [
-  "10.79.4.192/27",
-  "10.79.4.224/27"
-]
+# add private subnet cidrs based on your vpc cidr range. The below is for the VPC CIDR: 10.79.4.0/22
 private_subnet_cidrs = [
   "10.79.4.64/26",
   "10.79.4.128/26"

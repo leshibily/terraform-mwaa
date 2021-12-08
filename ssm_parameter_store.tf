@@ -1,13 +1,4 @@
-resource "aws_ssm_parameter" "public_subnets_ids" {
-  name        = "/Dev/vpc/public_subnet_ids"
-  description = "List with the IDs of the public subnets."
-  type        = "StringList"
-  value       = join(",", aws_subnet.public_subnets.*.id)
-
-  tags = merge(local.tags, {
-    Name = var.prefix
-  })
-}
+# MWAA SSM Parameter store
 
 resource "aws_ssm_parameter" "private_subnets_ids" {
   name        = "/Dev/vpc/private_subnets_ids"
@@ -16,7 +7,7 @@ resource "aws_ssm_parameter" "private_subnets_ids" {
   value       = join(",", aws_subnet.private_subnets.*.id)
 
   tags = merge(local.tags, {
-    Name = var.prefix
+    Name = "${var.prefix}-private_subnets_ids"
   })
 }
 
@@ -27,7 +18,7 @@ resource "aws_ssm_parameter" "airflow_bucket_name" {
   value       = aws_s3_bucket.s3_bucket.bucket
 
   tags = merge(local.tags, {
-    Name = var.prefix
+    Name = "${var.prefix}-bucket-name"
   })
 }
 
@@ -38,7 +29,7 @@ resource "aws_ssm_parameter" "airflow_bucket_id" {
   value       = aws_s3_bucket.s3_bucket.id
 
   tags = merge(local.tags, {
-    Name = var.prefix
+    Name = "${var.prefix}-bucket-id"
   })
 }
 
@@ -49,7 +40,7 @@ resource "aws_ssm_parameter" "mwaa_environment_arn" {
   value       = aws_mwaa_environment.mwaa_environment.arn
 
   tags = merge(local.tags, {
-    Name = var.prefix
+    Name = "${var.prefix}-mwaa-environment-arn"
   })
 }
 
@@ -60,17 +51,6 @@ resource "aws_ssm_parameter" "mwaa_webserver_url" {
   value       = aws_mwaa_environment.mwaa_environment.webserver_url
 
   tags = merge(local.tags, {
-    Name = var.prefix
-  })
-}
-
-resource "aws_ssm_parameter" "db_instance_endpoint" {
-  name        = "/Dev/rds/db_instance_endpoint"
-  description = "The RDS connection endpoint in address:port format."
-  type        = "String"
-  value       = aws_db_instance.db_instance.endpoint
-
-  tags = merge(local.tags, {
-    Name = var.prefix
+    Name = "${var.prefix}-mwaa_webserver_url"
   })
 }

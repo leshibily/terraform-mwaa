@@ -1,7 +1,15 @@
 # MWAA input variables
 
-variable "aws_access_key" {}
-variable "aws_secret_key" {}
+variable "aws_access_key" {
+  sensitive = true
+}
+variable "aws_secret_key" {
+  sensitive = true
+}
+variable "aws_session_token" {
+  default   = ""
+  sensitive = true
+}
 
 variable "region" {
   type        = string
@@ -16,16 +24,6 @@ variable "prefix" {
 variable "vpc_id" {
   type        = string
   description = "VPC ID of the AWS VPC."
-}
-
-variable "igw_id" {
-  type        = string
-  description = "Internet gateway ID."
-}
-
-variable "public_subnet_cidrs" {
-  type        = list(string)
-  description = "Public subnets' CIDR blocks."
 }
 
 variable "private_subnet_cidrs" {

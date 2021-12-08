@@ -12,7 +12,7 @@ resource "aws_s3_bucket" "s3_bucket" {
   }
 
   tags = merge(local.tags, {
-    Name = var.prefix
+    Name = "${var.prefix}-s3-bucket"
   })
 }
 
