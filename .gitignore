@@ -5,3 +5,5 @@
 *.tfstate.*
 crash.log
 .terraform.lock.hcl
+*.json
+*.bkp
