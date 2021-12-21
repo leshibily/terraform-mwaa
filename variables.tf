@@ -26,9 +26,9 @@ variable "vpc_id" {
   description = "VPC ID of the AWS VPC."
 }
 
-variable "private_subnet_cidrs" {
+variable "private_subnet_ids" {
   type        = list(string)
-  description = "Private subnets' CIDR blocks."
+  description = "Private subnet ids"
 }
 
 variable "airflow_version" {

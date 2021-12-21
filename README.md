@@ -19,10 +19,9 @@ aws_session_token = "your_aws_session_token"
 region   = "ap-southeast-2"
 prefix   = "airflow"
 vpc_id = "vpc-01c8a77ac9example"
-# add private subnet cidrs based on your vpc cidr range. The below is for the VPC CIDR: 10.79.4.0/22
-private_subnet_cidrs = [
-  "10.79.4.64/26",
-  "10.79.4.128/26"
+private_subnet_ids = [
+  "subnet-b46032ec",
+  "subnet-a46032fc"
 ]
 max_workers = 2
 ```

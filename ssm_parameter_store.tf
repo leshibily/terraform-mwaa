@@ -1,16 +1,5 @@
 # MWAA SSM Parameter store
 
-resource "aws_ssm_parameter" "private_subnets_ids" {
-  name        = "/Dev/vpc/private_subnets_ids"
-  description = "List with the IDs of the private subnets."
-  type        = "StringList"
-  value       = join(",", aws_subnet.private_subnets.*.id)
-
-  tags = merge(local.tags, {
-    Name = "${var.prefix}-private_subnets_ids"
-  })
-}
-
 resource "aws_ssm_parameter" "airflow_bucket_name" {
   name        = "/Dev/s3/airflow_bucket_name"
   description = "Name of S3 bucket used to store dags."
